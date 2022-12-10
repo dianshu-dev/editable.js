@@ -317,7 +317,9 @@ export default class Dispatcher {
       })
 
       .on('character', function (event) {
-        self.notify('change', this, getState(this))
+        setTimeout(() => {
+          self.notify('change', this, getState(this))
+        }, 0)
       })
   }
 
