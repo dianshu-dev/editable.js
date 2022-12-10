@@ -10,7 +10,7 @@ export const previous = getSibling('previousElementSibling')
 export function init (elem, {normalize, shouldSpellcheck}, data) {
   setBlockId(elem)
   if (data) {
-    state[curBlockId] = data
+    state[`id-${curBlockId}`] = data
   }
   elem.setAttribute('contenteditable', true)
   elem.setAttribute('spellcheck', Boolean(shouldSpellcheck))
