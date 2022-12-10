@@ -186,7 +186,9 @@ export default class Dispatcher {
   */
   triggerChangeEvent (target) {
     if (isInputEventSupported) return
-    this.notify('change', target, getState(target))
+    setTimeout(() => {
+      this.notify('change', target, getState(target))
+    }, 0)
   }
 
   dispatchSwitchEvent (event, element, direction) {
