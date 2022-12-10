@@ -150,13 +150,13 @@ export class Editable {
   *    If no param is specified all editables marked as disabled are enabled.
   * @chainable
   */
-  enable (target, normalize) {
+  enable (target, normalize, data) {
     const shouldSpellcheck = this.config.browserSpellcheck
     const targets = domArray(target || `.${config.editableDisabledClass}`, this.win.document)
 
     for (const element of targets) {
-      block.init(element, {normalize, shouldSpellcheck})
-      this.dispatcher.notify('init', element)
+      block.init(element, {normalize, shouldSpellcheck}, data)
+      this.dispatcher.notify('init', element, data)
     }
 
     return this

@@ -4,6 +4,7 @@ import eventable from './eventable'
 import SelectionWatcher from './selection-watcher'
 import config from './config'
 import Keyboard from './keyboard'
+import {getState} from './block'
 import {closest} from './util/dom'
 import {replaceLast, endsWithSingleSpace} from './util/string'
 
@@ -143,7 +144,7 @@ export default class Dispatcher {
           this.notify('paste', block, blocks, cursor)
           // The input event does not fire when we process the content manually
           // and insert it via script
-          this.notify('change', block)
+          this.notify('change', block, getState(block))
         } else {
           cursor.setVisibleSelection()
         }
@@ -152,7 +153,7 @@ export default class Dispatcher {
         const block = this.getEditableBlockByEvent(evt)
         if (!block) return
         if (isInputEventSupported) {
-          this.notify('change', block)
+          this.notify('change', block, getState(block))
         } else {
           // Most likely the event was already handled manually by
           // triggerChangeEvent so the first time we just switch the
@@ -164,7 +165,7 @@ export default class Dispatcher {
       .setupDocumentListener('formatEditable', function formatEditableListener (evt) {
         const block = this.getEditableBlockByEvent(evt)
         if (!block) return
-        this.notify('change', block)
+        this.notify('change', block, getState(block))
       })
   }
 
@@ -185,7 +186,7 @@ export default class Dispatcher {
   */
   triggerChangeEvent (target) {
     if (isInputEventSupported) return
-    this.notify('change', target)
+    this.notify('change', target, getState(target))
   }
 
   dispatchSwitchEvent (event, element, direction) {
@@ -316,7 +317,7 @@ export default class Dispatcher {
       })
 
       .on('character', function (event) {
-        self.notify('change', this)
+        self.notify('change', this, getState(this))
       })
   }
 

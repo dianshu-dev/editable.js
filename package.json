@@ -1,7 +1,7 @@
 {
   "name": "@dianshu/editable.js",
   "description": "Friendly contenteditable API",
-  "version": "0.0.0-development",
+  "version": "0.0.1-development",
   "dependencies": {
     "@babel/runtime": "^7.16.7",
     "bowser": "2.11.0",

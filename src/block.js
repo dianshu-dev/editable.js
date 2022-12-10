@@ -1,15 +1,17 @@
 import config from './config'
 import * as content from './content'
 
-let nextBlockId = 1
+let curBlockId = 0
 const state = {}
 
 export const next = getSibling('nextElementSibling')
 export const previous = getSibling('previousElementSibling')
 
-export function init (elem, {normalize, shouldSpellcheck}) {
+export function init (elem, {normalize, shouldSpellcheck}, data) {
   setBlockId(elem)
-
+  if (data) {
+    state[curBlockId] = data
+  }
   elem.setAttribute('contenteditable', true)
   elem.setAttribute('spellcheck', Boolean(shouldSpellcheck))
 
@@ -33,8 +35,8 @@ export function disable (elem) {
 
 export function setBlockId (elem) {
   if (!elem.hasAttribute('data-editable')) {
-    elem.setAttribute('data-editable', `id-${nextBlockId}`)
-    nextBlockId += 1
+    curBlockId += 1
+    elem.setAttribute('data-editable', `id-${curBlockId}`)
   }
 }
 
