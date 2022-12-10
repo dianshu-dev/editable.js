@@ -16,10 +16,10 @@ We made editable.js to support our vision of online document editing. Have a loo
 Via npm:
 
 ```shell
-npm install --save @livingdocs/editable.js
+npm install --save @dianshu/editable.js
 ```
 
-You can either `require('@livingdocs/editable.js')` or find a prebuilt file in the npm bundle `dist/editable.js`.
+You can either `require('@dianshu/editable.js')` or find a prebuilt file in the npm bundle `dist/editable.js`.
 
 ## Events Overview
 
