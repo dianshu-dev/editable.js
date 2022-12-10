@@ -1,5 +1,5 @@
 {
-  "name": "@livingdocs/editable.js",
+  "name": "@dianshu-dev/editable.js",
   "description": "Friendly contenteditable API",
   "version": "0.0.0-development",
   "dependencies": {
@@ -61,7 +61,7 @@
   "module": "src/core.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/livingdocsIO/editable.js.git"
+    "url": "https://github.com/dianshu-dev/editable.js.git"
   },
   "scripts": {
     "start": "WEBPACK_DEV=true BUILD_DOCS=true webpack serve",

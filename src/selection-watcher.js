@@ -100,29 +100,27 @@ export default class SelectionWatcher {
 
   selectionChanged () {
     const newRange = this.getRangeContainer()
-    if (newRange.isDifferentFrom(this.currentRange)) {
-      const lastSelection = this.currentSelection
-      this.currentRange = newRange
+    const lastSelection = this.currentSelection
+    this.currentRange = newRange
 
-      // empty selection or cursor
-      if (lastSelection) {
-        if (lastSelection.isCursor && !this.currentRange.isCursor) {
-          this.dispatcher.notify('cursor', lastSelection.host)
-        } else if (lastSelection.isSelection && !this.currentRange.isSelection) {
-          this.dispatcher.notify('selection', lastSelection.host)
-        }
+    // empty selection or cursor
+    if (lastSelection) {
+      if (lastSelection.isCursor && !this.currentRange.isCursor) {
+        this.dispatcher.notify('cursor', lastSelection.host)
+      } else if (lastSelection.isSelection && !this.currentRange.isSelection) {
+        this.dispatcher.notify('selection', lastSelection.host)
       }
+    }
 
-      // set new selection or cursor and fire event
-      if (this.currentRange.isCursor) {
-        this.currentSelection = new Cursor(this.currentRange.host, this.currentRange.range)
-        this.dispatcher.notify('cursor', this.currentSelection.host, this.currentSelection)
-      } else if (this.currentRange.isSelection) {
-        this.currentSelection = new Selection(this.currentRange.host, this.currentRange.range)
-        this.dispatcher.notify('selection', this.currentSelection.host, this.currentSelection)
-      } else {
-        this.currentSelection = undefined
-      }
+    // set new selection or cursor and fire event
+    if (this.currentRange.isCursor) {
+      this.currentSelection = new Cursor(this.currentRange.host, this.currentRange.range)
+      this.dispatcher.notify('cursor', this.currentSelection.host, this.currentSelection)
+    } else if (this.currentRange.isSelection) {
+      this.currentSelection = new Selection(this.currentRange.host, this.currentRange.range)
+      this.dispatcher.notify('selection', this.currentSelection.host, this.currentSelection)
+    } else {
+      this.currentSelection = undefined
     }
   }
 }

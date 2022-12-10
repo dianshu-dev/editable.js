@@ -6,3 +6,5 @@ lib
 coverage
 hmr.js
 hmr.js.map
+
+.idea
